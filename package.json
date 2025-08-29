@@ -1,5 +1,32 @@
 {
-  "devDependencies": {
-    "@playwright/test": "^1.54.0"
+  "name": "nationale-nederlanden-training-app",
+  "version": "1.0.0",
+  "description": "Complete training session management application with React frontend and Node.js backend",
+  "scripts": {
+    "start": "./start.sh",
+    "start:dev": "./start.sh",
+    "install:all": "cd backend && npm install && cd ../frontend && npm install",
+    "test:all": "./test-runner.sh all",
+    "test:backend": "./test-runner.sh backend",
+    "test:frontend": "./test-runner.sh frontend",
+    "test:unit": "./test-runner.sh frontend",
+    "test:api": "./test-runner.sh backend",
+    "test:integration": "./test-runner.sh integration",
+    "test:accessibility": "./test-runner.sh accessibility",
+    "test:health": "./test-runner.sh health",
+    "test:header": "./test-runner.sh header",
+    "test:hello": "./test-runner.sh hello",
+    "test:add-session": "./test-runner.sh add-session",
+    "test:watch": "./test-runner.sh watch",
+    "test:runner": "./test-runner.sh",
+    "init-db": "cd backend && npm run init-db",
+    "clean": "rm -rf backend/node_modules frontend/node_modules backend/training.db"
+  },
+  "keywords": ["training", "sessions", "react", "nodejs", "sqlite", "playwright"],
+      "author": "Champions Training Team",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/your-org/nationale-nederlanden-training-app.git"
   }
 }

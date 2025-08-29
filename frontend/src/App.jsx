@@ -1,17 +1,32 @@
 import './App.css'
+import { Routes, Route, useLocation } from 'react-router-dom'
+import HomePage from './HomePage.jsx'
+import ListPage from './ListPage.jsx'
+import AddSessionPage from './AddSessionPage.jsx'
+import HealthPage from './HealthPage.jsx'
+import BestPracticesPage from './BestPracticesPage.jsx'
+import Header from './Header.jsx'
 
-function App() {
+function AppContent() {
+  const location = useLocation();
+  const showHeader = location.pathname !== '/';
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Hello Nationale Nederlanden!</h1>
-        <p>Welcome to the Playwright Training</p>
-        <button className="hello-button">
-          Click me!
-        </button>
-      </header>
+          <div className={`App ${showHeader ? 'has-header' : ''}`} role="application" aria-label="Champions Training App">
+      {showHeader && <Header />}
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/list" element={<ListPage />} />
+        <Route path="/add" element={<AddSessionPage />} />
+        <Route path="/health" element={<HealthPage />} />
+        <Route path="/best-practices" element={<BestPracticesPage />} />
+      </Routes>
     </div>
   )
+}
+
+function App() {
+  return <AppContent />
 }
 
 export default App

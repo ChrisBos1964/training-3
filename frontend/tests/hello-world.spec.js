@@ -6,32 +6,41 @@ test.describe('Hello World Page', () => {
     await page.goto('/');
     
     // Check that the main heading is displayed
-    await expect(page.getByRole('heading', { name: 'Hello Nationale Nederlanden!' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Hello Champions!' })).toBeVisible();
     
     // Check that the welcome message is present
     await expect(page.getByText('Welcome to the Playwright Training')).toBeVisible();
   });
 
-  test('should have a clickable button', async ({ page }) => {
+  test('should have a clickable button with proper accessibility', async ({ page }) => {
     // Navigate to the home page
     await page.goto('/');
     
-    // Check that the button is visible and clickable
-    const button = page.getByRole('button', { name: 'Click me!' });
+    // Check that the button is visible and clickable with proper accessibility
+    const button = page.getByRole('button', { name: 'Navigate to training sessions list' });
     await expect(button).toBeVisible();
     await expect(button).toBeEnabled();
     
+    // Check that the button has proper accessibility attributes
+    await expect(button).toHaveAttribute('aria-label', 'Navigate to training sessions list');
+    await expect(button).toHaveAttribute('role', 'button');
+    
     // Test clicking the button
     await button.click();
+    
+    // Should navigate to list page
+    await expect(page).toHaveURL('/list');
   });
 
-  test('should have proper page structure', async ({ page }) => {
+  test('should have proper page structure and accessibility roles', async ({ page }) => {
     // Navigate to the home page
     await page.goto('/');
     
     // Check that the page has the correct structure
-    await expect(page.locator('.App')).toBeVisible();
-    await expect(page.locator('.App-header')).toBeVisible();
+    await expect(page.locator('[role="application"]')).toBeVisible();
+    
+    // Home page should NOT have a banner (header) - it's the intro page
+    await expect(page.locator('[role="banner"]')).not.toBeVisible();
     
     // Check that the button has the correct class
     await expect(page.locator('.hello-button')).toBeVisible();
@@ -43,17 +52,17 @@ test.describe('Hello World Page', () => {
     await page.goto('/');
     
     // Check that content is still visible on mobile
-    await expect(page.getByRole('heading', { name: 'Hello Nationale Nederlanden!' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Hello Champions!' })).toBeVisible();
     await expect(page.getByText('Welcome to the Playwright Training')).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Click me!' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Navigate to training sessions list' })).toBeVisible();
     
     // Test on desktop viewport
     await page.setViewportSize({ width: 1920, height: 1080 });
     await page.goto('/');
     
     // Check that content is still visible on desktop
-    await expect(page.getByRole('heading', { name: 'Hello Nationale Nederlanden!' })).toBeVisible();
+    await expect(page.getByRole('heading', { name: 'Hello Champions!' })).toBeVisible();
     await expect(page.getByText('Welcome to the Playwright Training')).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Click me!' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Navigate to training sessions list' })).toBeVisible();
   });
 }); 

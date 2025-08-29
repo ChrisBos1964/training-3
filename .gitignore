@@ -1,3 +1,18 @@
 node_modules/
 
-test_result/
+test-results/
+tests/
+playwright.config.js
+playwright-report/
+
+# Database files
+*.db
+*.db.backup.*
+
+# Environment files
+.env
+.env.local
+.env.production
+
+# Project specific files
+training-3.md
