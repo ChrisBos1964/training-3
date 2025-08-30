@@ -13,9 +13,7 @@ function Header() {
     navigate('/list');
   };
 
-  const handleAddClick = () => {
-    navigate('/add');
-  };
+
 
   const handleHealthClick = () => {
     navigate('/health');
@@ -64,17 +62,7 @@ function Header() {
                 Sessions
               </button>
             </li>
-            <li role="none">
-              <button
-                role="menuitem"
-                aria-label="Add New Training Session"
-                aria-current={location.pathname === '/add' ? 'page' : undefined}
-                onClick={handleAddClick}
-                className={`nav-button ${location.pathname === '/add' ? 'active' : ''}`}
-              >
-                Add Session
-              </button>
-            </li>
+
             <li role="none">
               <button
                 role="menuitem"

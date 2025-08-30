@@ -32,6 +32,11 @@ class TrainingSessionsAPI {
     }
   }
 
+  // Get training session by ID (alias for getSessionById)
+  async getSession(id) {
+    return this.getSessionById(id);
+  }
+
   // Create new training session
   async createSession(sessionData) {
     try {

@@ -56,11 +56,11 @@ export default defineConfig({
     /* Test against branded browsers. */
     // {
     //   name: 'Microsoft Edge',
-    //   use: { ...devices['Desktop Edge'], channel: 'msedge' },
+    //   use: { ...edge, channel: 'msedge' },
     // },
     // {
     //   name: 'Google Chrome',
-    //   use: { ...devices['Desktop Chrome'], channel: 'chrome' },
+    //   use: { ...chromium, channel: 'chrome' },
     // },
   ],
 
@@ -69,6 +69,8 @@ export default defineConfig({
     command: 'npm run dev',
     url: 'http://localhost:5173',
     reuseExistingServer: !process.env.CI,
-    timeout: 120 * 1000,
   },
+
+  /* Global setup - uncomment to run reset-db.sh before all tests */
+  // globalSetup: require.resolve('./global-setup.js'),
 }); 

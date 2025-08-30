@@ -15,10 +15,10 @@ function HomePage() {
       <button 
         className="hello-button"
         onClick={handleClick}
-        aria-label="Navigate to training sessions list"
+        aria-label="Let's start training sessions"
         role="button"
       >
-        Click me!
+        Let's Start!
       </button>
     </div>
   )

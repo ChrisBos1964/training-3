@@ -3,11 +3,7 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-}
-
-/* Default layout - centered content (for home page) */
-.App {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
   align-items: center;
   justify-content: center;
 }
@@ -16,6 +12,8 @@
 .App.has-header {
   align-items: stretch;
   justify-content: flex-start;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
 }
 
 .App-header {
@@ -357,7 +355,9 @@
   align-items: center;
   justify-content: flex-start;
   padding: 2rem;
-  min-height: calc(100vh - 80px); /* Account for header height */
+  min-height: 100vh; /* Cover full viewport height */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) fixed;
+  background-size: cover;
 }
 
 .page-content {
@@ -787,5 +787,192 @@
   
   .code-example pre {
     font-size: 0.8rem !important;
+  }
+}
+
+.edit-form .form-help {
+  display: block;
+  margin-top: 0.5rem;
+  font-size: 0.85rem;
+  color: #6c757d;
+  font-style: italic;
+  text-align: left;
+}
+
+.edit-form .form-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e9ecef;
+}
+
+.edit-form .form-actions .hello-button {
+  flex: 1;
+}
+
+/* Filter Section Styles */
+.filter-section {
+  background: #f8f9fa;
+  border-radius: 15px;
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  border: 1px solid #e9ecef;
+}
+
+.filter-controls {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  align-items: end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-label {
+  font-weight: 600;
+  color: #333;
+  font-size: 0.9rem;
+}
+
+.filter-input,
+.filter-select {
+  padding: 10px 12px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  transition: border-color 0.3s ease;
+}
+
+.filter-input:focus,
+.filter-select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.clear-filters-button {
+  align-self: end;
+  padding: 10px 16px;
+  font-size: 0.9rem;
+}
+
+.filter-summary {
+  margin-top: 1rem;
+  padding: 0.75rem;
+  background: #e3f2fd;
+  border-radius: 8px;
+  color: #1976d2;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+/* Title Edit Button Styles */
+.title-edit-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  width: 100%;
+  transition: color 0.3s ease;
+}
+
+.title-edit-button:hover {
+  color: #667eea;
+  text-decoration: underline;
+}
+
+.title-edit-button:focus {
+  outline: 2px solid #667eea;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+/* Edit Form Styles */
+.edit-form {
+  background: #ffffff;
+  border-radius: 15px;
+  padding: 2rem;
+  margin: 1.5rem 0;
+  border: 1px solid #e9ecef;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.edit-form .form-group {
+  margin-bottom: 1.5rem;
+}
+
+.edit-form .form-label {
+  display: block;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.edit-form .form-input,
+.edit-form .form-textarea,
+.edit-form .form-select {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid #e9ecef;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  transition: border-color 0.3s ease;
+  font-family: inherit;
+}
+
+.edit-form .form-textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.edit-form .form-input:focus,
+.edit-form .form-textarea:focus,
+.edit-form .form-select:focus {
+  outline: none;
+  border-color: #667eea;
+  box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+/* Responsive adjustments for edit form and filters */
+@media (max-width: 768px) {
+  .edit-form {
+    padding: 1.5rem;
+    margin: 1rem 0;
+  }
+  
+  .edit-form .form-actions {
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .edit-form .form-actions .hello-button {
+    width: 100%;
+  }
+  
+  /* Filter section responsive adjustments */
+  .filter-controls {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+  
+  .filter-section {
+    padding: 1rem;
+    margin: 1rem 0;
+  }
+  
+  .clear-filters-button {
+    align-self: stretch;
+    width: 100%;
   }
 }

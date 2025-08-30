@@ -8,7 +8,8 @@
     "build": "vite build",
     "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview",
-    "test": "playwright test"
+    "test": "cd .. && ./reset-db.sh && cd frontend && playwright test",
+    "test:no-reset": "playwright test"
   },
   "dependencies": {
     "react": "^18.2.0",

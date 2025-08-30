@@ -10,6 +10,10 @@ function ListPage() {
   const [error, setError] = useState(null)
   const [deleteConfirm, setDeleteConfirm] = useState(null)
   const [finalDeleteConfirm, setFinalDeleteConfirm] = useState(null)
+  // Filter states
+  const [titleFilter, setTitleFilter] = useState('')
+  const [durationFilter, setDurationFilter] = useState('')
+  const [statusFilter, setStatusFilter] = useState('')
   // Refs for focus management
   const firstModalRef = useRef(null)
   const secondModalRef = useRef(null)
@@ -100,6 +104,25 @@ function ListPage() {
     } finally {
       setLoading(false)
     }
+  }
+
+  // Filter sessions based on current filter values
+  const filteredSessions = sessions.filter(session => {
+    const matchesTitle = !titleFilter || 
+      session.title.toLowerCase().includes(titleFilter.toLowerCase())
+    const matchesDuration = !durationFilter || 
+      (session.duration && session.duration.toString().includes(durationFilter))
+    const matchesStatus = !statusFilter || 
+      session.status.toLowerCase().includes(statusFilter.toLowerCase())
+    
+    return matchesTitle && matchesDuration && matchesStatus
+  })
+
+  // Clear all filters
+  const clearFilters = () => {
+    setTitleFilter('')
+    setDurationFilter('')
+    setStatusFilter('')
   }
 
   const handleBackClick = () => {
@@ -205,11 +228,101 @@ function ListPage() {
         </nav>
 
         <main role="main" aria-label="Training sessions list">
+          {/* Filter Section */}
+          <section role="search" aria-labelledby="filter-heading" className="filter-section">
+            <h2 id="filter-heading" className="visually-hidden">Filter Training Sessions</h2>
+            <div className="filter-controls" role="group" aria-labelledby="filter-heading">
+              <div className="filter-group">
+                <label htmlFor="title-filter" className="filter-label">
+                  Filter by Title
+                </label>
+                <input
+                  id="title-filter"
+                  type="text"
+                  value={titleFilter}
+                  onChange={(e) => setTitleFilter(e.target.value)}
+                  placeholder="Enter title to filter..."
+                  className="filter-input"
+                  aria-describedby="title-filter-help"
+                />
+                <span id="title-filter-help" className="visually-hidden">
+                  Type to filter sessions by title
+                </span>
+              </div>
+
+              <div className="filter-group">
+                <label htmlFor="duration-filter" className="filter-label">
+                  Filter by Duration
+                </label>
+                <input
+                  id="duration-filter"
+                  type="text"
+                  value={durationFilter}
+                  onChange={(e) => setDurationFilter(e.target.value)}
+                  placeholder="Enter duration to filter..."
+                  className="filter-input"
+                  aria-describedby="duration-filter-help"
+                />
+                <span id="duration-filter-help" className="visually-hidden">
+                  Type to filter sessions by duration in hours
+                </span>
+              </div>
+
+              <div className="filter-group">
+                <label htmlFor="status-filter" className="filter-label">
+                  Filter by Status
+                </label>
+                <select
+                  id="status-filter"
+                  value={statusFilter}
+                  onChange={(e) => setStatusFilter(e.target.value)}
+                  className="filter-select"
+                  aria-describedby="status-filter-help"
+                >
+                  <option value="">All Statuses</option>
+                  <option value="Pending">Pending</option>
+                  <option value="In Progress">In Progress</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Cancelled">Cancelled</option>
+                </select>
+                <span id="status-filter-help" className="visually-hidden">
+                  Select a status to filter sessions
+                </span>
+              </div>
+
+              <button
+                type="button"
+                onClick={clearFilters}
+                className="hello-button secondary clear-filters-button"
+                aria-label="Clear all filters"
+                role="button"
+              >
+                Clear Filters
+              </button>
+            </div>
+
+            {titleFilter || durationFilter || statusFilter ? (
+              <p className="filter-summary" role="status" aria-live="polite">
+                Showing {filteredSessions.length} of {sessions.length} sessions
+                {titleFilter && ` matching title "${titleFilter}"`}
+                {durationFilter && ` matching duration "${durationFilter}"`}
+                {statusFilter && (() => {
+                  const statusOption = document.getElementById('status-filter')?.querySelector(`option[value="${statusFilter}"]`);
+                  const statusDisplayText = statusOption?.textContent || statusFilter;
+                  return ` matching status "${statusDisplayText}"`;
+                })()}
+              </p>
+            ) : null}
+          </section>
+
           <section aria-labelledby="sessions-heading">
             <h2 id="sessions-heading" className="visually-hidden">Training Sessions</h2>
-            {sessions.length === 0 ? (
+            {filteredSessions.length === 0 ? (
               <p className="no-sessions" role="status" aria-live="polite">
-                No training sessions found. Click "Add Session" to create your first one.
+                {sessions.length === 0 
+                  ? 'No training sessions found. Click "Add Session" to create your first one.'
+                  : 'No sessions match the current filters. Try adjusting your search criteria.'
+                }
               </p>
             ) : (
               <ul 
@@ -217,7 +330,7 @@ function ListPage() {
                 aria-label="Training sessions"
                 className="sessions-list"
               >
-                {sessions.map((session) => (
+                {filteredSessions.map((session) => (
                   <li 
                     key={session.id} 
                     role="listitem"
@@ -229,7 +342,14 @@ function ListPage() {
                           id={`session-${session.id}-title`}
                           className="session-title"
                         >
-                          {session.title}
+                          <button
+                            className="title-edit-button"
+                            onClick={() => navigate(`/edit/${session.id}`)}
+                            aria-label={`Edit training session: ${session.title}`}
+                            role="button"
+                          >
+                            {session.title}
+                          </button>
                         </h3>
                         <div className="session-actions">
                           <span 

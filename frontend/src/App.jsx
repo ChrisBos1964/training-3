@@ -3,6 +3,7 @@ import { Routes, Route, useLocation } from 'react-router-dom'
 import HomePage from './HomePage.jsx'
 import ListPage from './ListPage.jsx'
 import AddSessionPage from './AddSessionPage.jsx'
+import EditSessionPage from './EditSessionPage.jsx'
 import HealthPage from './HealthPage.jsx'
 import BestPracticesPage from './BestPracticesPage.jsx'
 import Header from './Header.jsx'
@@ -18,6 +19,7 @@ function AppContent() {
         <Route path="/" element={<HomePage />} />
         <Route path="/list" element={<ListPage />} />
         <Route path="/add" element={<AddSessionPage />} />
+        <Route path="/edit/:id" element={<EditSessionPage />} />
         <Route path="/health" element={<HealthPage />} />
         <Route path="/best-practices" element={<BestPracticesPage />} />
       </Routes>
