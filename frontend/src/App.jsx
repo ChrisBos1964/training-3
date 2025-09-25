@@ -6,14 +6,15 @@ import AddSessionPage from './AddSessionPage.jsx'
 import EditSessionPage from './EditSessionPage.jsx'
 import HealthPage from './HealthPage.jsx'
 import BestPracticesPage from './BestPracticesPage.jsx'
+import NotFoundPage from './NotFoundPage.jsx'
 import Header from './Header.jsx'
 
 function AppContent() {
   const location = useLocation();
-  const showHeader = location.pathname !== '/';
+  const showHeader = /^\/(list|add|edit\/[^/]+|health|best-practices)$/.test(location.pathname);
 
   return (
-          <div className={`App ${showHeader ? 'has-header' : ''}`} role="application" aria-label="Champions Training App">
+          <div className={`App ${showHeader ? 'has-header' : ''}`} role="application" aria-label="Champions Training App" data-testid="app-root">
       {showHeader && <Header />}
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -22,6 +23,7 @@ function AppContent() {
         <Route path="/edit/:id" element={<EditSessionPage />} />
         <Route path="/health" element={<HealthPage />} />
         <Route path="/best-practices" element={<BestPracticesPage />} />
+        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   )

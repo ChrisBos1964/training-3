@@ -52,23 +52,24 @@ function AddSessionPage() {
   const isFormValid = formData.title.trim() && formData.description.trim() && formData.status
 
   return (
-    <div className="page-container">
+    <div className="page-container" data-testid="add-page">
       <div className="page-content">
-        <h1 className="page-title">Add New Training Session</h1>
+        <h1 className="page-title" data-testid="add-title">Add New Training Session</h1>
         <p className="page-description">Create a new training session</p>
         
-        <nav role="navigation" aria-label="Page navigation">
+        <nav role="navigation" aria-label="Page navigation" data-testid="add-page-nav">
           <button 
             className="hello-button secondary"
             onClick={handleBackClick}
             aria-label="Go back to training sessions list"
             role="button"
+            data-testid="add-back"
           >
             ← Back to List
           </button>
         </nav>
 
-        <main role="main" aria-label="Add training session form">
+        <main role="main" aria-label="Add training session form" data-testid="add-main">
           <section aria-labelledby="form-heading">
             <h2 id="form-heading" className="visually-hidden">Training Session Form</h2>
             
@@ -83,6 +84,7 @@ function AddSessionPage() {
               role="form"
               aria-labelledby="form-heading"
               className="session-form"
+              data-testid="add-form"
             >
               <div className="form-group">
                 <label 
@@ -103,6 +105,7 @@ function AddSessionPage() {
                   className="form-input"
                   placeholder="Enter session title"
                   disabled={loading}
+                  data-testid="add-title-input"
                 />
                 <div id="title-help" className="form-help">
                   Enter a descriptive title for the training session
@@ -128,6 +131,7 @@ function AddSessionPage() {
                   placeholder="Enter session description"
                   rows="4"
                   disabled={loading}
+                  data-testid="add-description-input"
                 />
                 <div id="description-help" className="form-help">
                   Provide a detailed description of what will be covered
@@ -151,6 +155,7 @@ function AddSessionPage() {
                   aria-describedby="status-help"
                   className="form-select"
                   disabled={loading}
+                  data-testid="add-status-select"
                 >
                   <option value="">Select a status</option>
                   <option value="Pending">Pending</option>
@@ -181,19 +186,21 @@ function AddSessionPage() {
                   className="form-input"
                   placeholder="2.5"
                   disabled={loading}
+                  data-testid="add-duration-input"
                 />
                 <div id="duration-help" className="form-help">
                   Estimated duration in hours (optional)
                 </div>
               </div>
 
-              <div className="form-actions">
+              <div className="form-actions" data-testid="add-actions">
                 <button
                   type="submit"
                   className="hello-button"
                   aria-label="Create training session"
                   disabled={loading || !isFormValid}
                   role="button"
+                  data-testid="add-submit"
                 >
                   {loading ? 'Creating...' : 'Create training session'}
                 </button>
@@ -204,6 +211,7 @@ function AddSessionPage() {
                   aria-label="Cancel and return to list"
                   disabled={loading}
                   role="button"
+                  data-testid="add-cancel"
                 >
                   Cancel
                 </button>

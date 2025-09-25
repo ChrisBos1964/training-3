@@ -21,3 +21,4 @@ After running the reset script, your database will contain:
 - Timestamps for created_at and updated_at
 - Proper indexing and constraints
 
+

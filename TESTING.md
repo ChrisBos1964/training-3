@@ -211,3 +211,4 @@ cd frontend && npm test
 - Each test suite runs in its own environment
 - Clear success/failure reporting for each step
 - Supports both npm scripts and direct script execution
+

@@ -70,8 +70,9 @@ function Header() {
       role="banner" 
       aria-label="Application Navigation Header"
       className="header"
+      data-testid="app-header"
     >
-              <nav role="navigation" aria-label="Main navigation">
+              <nav role="navigation" aria-label="Main navigation" data-testid="main-nav">
         <div className="header-content">
           <h1 
             role="heading" 
@@ -81,51 +82,59 @@ function Header() {
             Training App
           </h1>
           
-          <ul role="menubar" aria-label="Main Menu" className="nav-menu">
-            <li role="none">
-              <button
-                role="menuitem"
+          <ul className="nav-menu" aria-label="Main Menu" data-testid="main-menu">
+            <li>
+              <a
+                href="/"
                 aria-label="Go to Home page"
                 aria-current={location.pathname === '/' ? 'page' : undefined}
-                onClick={handleHomeClick}
+                onClick={(e) => { e.preventDefault(); handleHomeClick(); }}
                 className={`nav-button ${location.pathname === '/' ? 'active' : ''}`}
+                role="link"
+                data-testid="nav-home"
               >
                 Home
-              </button>
+              </a>
             </li>
-            <li role="none">
-              <button
-                role="menuitem"
+            <li>
+              <a
+                href="/list"
                 aria-label="View Training Sessions List"
                 aria-current={location.pathname === '/list' ? 'page' : undefined}
-                onClick={handleListClick}
+                onClick={(e) => { e.preventDefault(); handleListClick(); }}
                 className={`nav-button ${location.pathname === '/list' ? 'active' : ''}`}
+                role="link"
+                data-testid="nav-sessions"
               >
                 Sessions
-              </button>
+              </a>
             </li>
 
-            <li role="none">
-              <button
-                role="menuitem"
+            <li>
+              <a
+                href="/health"
                 aria-label="Check Backend Health Status"
                 aria-current={location.pathname === '/health' ? 'page' : undefined}
-                onClick={handleHealthClick}
+                onClick={(e) => { e.preventDefault(); handleHealthClick(); }}
                 className={`nav-button ${location.pathname === '/health' ? 'active' : ''}`}
+                role="link"
+                data-testid="nav-health"
               >
                 Health
-              </button>
+              </a>
             </li>
-            <li role="none">
-              <button
-                role="menuitem"
+            <li>
+              <a
+                href="/best-practices"
                 aria-label="View Testing Best Practices"
                 aria-current={location.pathname === '/best-practices' ? 'page' : undefined}
-                onClick={handleBestPracticesClick}
+                onClick={(e) => { e.preventDefault(); handleBestPracticesClick(); }}
                 className={`nav-button ${location.pathname === '/best-practices' ? 'active' : ''}`}
+                role="link"
+                data-testid="nav-best-practices"
               >
                 Best Practices
-              </button>
+              </a>
             </li>
           </ul>
           
@@ -145,7 +154,7 @@ function Header() {
             data-testid="theme-toggle"
           >
             {theme === 'light' && (
-              <svg className="w-full light-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg className="w-full" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="light-icon">
                 <path fillRule="evenodd" clipRule="evenodd" d="M16.0003 21.4194C13.0123 21.4194 10.5813 18.9874 10.5813 15.9994C10.5813 13.0114 13.0123 10.5804 16.0003 10.5804C18.9883 10.5804 21.4193 13.0114 21.4193 15.9994C21.4193 18.9874 18.9883 21.4194 16.0003 21.4194M16.0003 8.64136C11.9423 8.64136 8.64233 11.9414 8.64233 15.9994C8.64233 20.0574 11.9423 23.3574 16.0003 23.3574C20.0573 23.3574 23.3583 20.0574 23.3583 15.9994C23.3583 11.9414 20.0573 8.64136 16.0003 8.64136" fill="currentColor"></path>
                 <path fillRule="evenodd" clipRule="evenodd" d="M16.0004 7.08447C16.5364 7.08447 16.9704 6.64946 16.9704 6.11446V3.34546C16.9704 2.81046 16.5364 2.37646 16.0004 2.37646C15.4644 2.37646 15.0304 2.81046 15.0304 3.34546V6.11446C15.0304 6.64946 15.4644 7.08447 16.0004 7.08447" fill="currentColor"></path>
                 <path fillRule="evenodd" clipRule="evenodd" d="M6.11559 15.0298H3.34559C2.81059 15.0298 2.37659 15.4648 2.37659 15.9998C2.37659 16.5348 2.81059 16.9688 3.34559 16.9688H6.11559C6.65159 16.9688 7.08459 16.5348 7.08459 15.9998C7.08459 15.4648 6.65159 15.0298 6.11559 15.0298" fill="currentColor"></path>
@@ -158,7 +167,7 @@ function Header() {
               </svg>
             )}
             {theme === 'dark' && (
-              <svg className="w-full dark-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <svg className="w-full" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" className="dark-icon">
                 <path fillRule="evenodd" clipRule="evenodd" d="M14.228 7.9439C10.5176 8.82869 7.75757 12.1054 7.75757 15.9987C7.75757 20.5716 11.5618 24.2919 16.2367 24.2919C19.2323 24.2919 21.9337 22.7699 23.4514 20.3585C23.2779 20.3676 23.1033 20.3722 22.9287 20.3722C17.7826 20.3722 13.5951 16.2772 13.5951 11.2435C13.5951 10.1032 13.8108 8.98914 14.228 7.9439M16.2367 26.4993C10.3171 26.4993 5.50037 21.7899 5.50037 15.9987C5.50037 10.2109 10.3171 5.49927 16.2367 5.49927C16.6598 5.49927 17.0501 5.72963 17.2435 6.09753C17.438 6.46428 17.4087 6.90668 17.1638 7.24363C16.3059 8.42297 15.8535 9.80631 15.8535 11.2435C15.8535 15.06 19.0272 18.1637 22.9287 18.1637C23.6483 18.1637 24.3573 18.0582 25.0359 17.8531C25.4378 17.7293 25.8785 17.8359 26.1738 18.1304C26.4715 18.425 26.5758 18.8559 26.4446 19.2467C25.0019 23.5847 20.9 26.4993 16.2367 26.4993" fill="currentColor"></path>
               </svg>
             )}

@@ -153,24 +153,25 @@ function EditSessionPage() {
   }
 
   return (
-    <div className="page-container">
+    <div className="page-container" data-testid="edit-page">
       <div className="page-content">
-        <h1 className="page-title">Edit Training Session</h1>
+        <h1 className="page-title" data-testid="edit-title">Edit Training Session</h1>
         <p className="page-description">Update your training session details</p>
         
-        <nav role="navigation" aria-label="Page navigation">
+        <nav role="navigation" aria-label="Page navigation" data-testid="edit-page-nav">
           <button 
             className="hello-button secondary"
             onClick={handleBackClick}
             aria-label="Go back to training sessions list (cancel)"
             role="button"
+            data-testid="edit-back"
           >
             ← Back to List (Cancel)
           </button>
         </nav>
 
-        <main role="main" aria-label="Edit training session form">
-          <form onSubmit={handleSubmit} className="edit-form" role="form" aria-labelledby="edit-form-heading">
+        <main role="main" aria-label="Edit training session form" data-testid="edit-main">
+          <form onSubmit={handleSubmit} className="edit-form" role="form" aria-labelledby="edit-form-heading" data-testid="edit-form">
             <h2 id="edit-form-heading" className="visually-hidden">Edit Training Session Form</h2>
             
             <div className="form-group">
@@ -188,6 +189,7 @@ function EditSessionPage() {
                 aria-describedby="title-help"
                 aria-required="true"
                 placeholder="Enter session title"
+                data-testid="edit-title-input"
               />
               <span id="title-help" className="form-help">
                 Enter a descriptive title for the training session
@@ -209,6 +211,7 @@ function EditSessionPage() {
                 aria-describedby="description-help"
                 aria-required="true"
                 placeholder="Enter session description"
+                data-testid="edit-description-input"
               />
               <span id="description-help" className="form-help">
                 Provide a detailed description of what will be covered
@@ -228,6 +231,7 @@ function EditSessionPage() {
                 className="form-select"
                 aria-describedby="status-help"
                 aria-required="true"
+                data-testid="edit-status-select"
               >
                 <option value="">Select a status</option>
                 <option value="Pending">Pending</option>
@@ -255,18 +259,20 @@ function EditSessionPage() {
                 className="form-input"
                 aria-describedby="duration-help"
                 placeholder="2.5"
+                data-testid="edit-duration-input"
               />
               <span id="duration-help" className="form-help">
                 Estimated duration in hours (optional)
               </span>
             </div>
 
-            <div className="form-actions" role="group" aria-label="Form actions">
+            <div className="form-actions" role="group" aria-label="Form actions" data-testid="edit-actions">
               <button
                 type="submit"
                 className="hello-button"
                 aria-label="Save changes to training session"
                 role="button"
+                data-testid="edit-save"
               >
                 Save Changes
               </button>
@@ -277,6 +283,7 @@ function EditSessionPage() {
                 onClick={handleDeleteClick}
                 aria-label="Delete this training session"
                 role="button"
+                data-testid="edit-delete"
               >
                 Delete Session
               </button>

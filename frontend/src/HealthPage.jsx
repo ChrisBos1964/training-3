@@ -79,28 +79,31 @@ function HealthPage() {
   };
 
   return (
-    <div className="page-container">
+    <div className="page-container" data-testid="health-page">
       <div className="page-content">
-        <h1 className="page-title">Backend Health Monitor</h1>
+        <h1 className="page-title" data-testid="health-title">Backend Health Monitor</h1>
 
-        <main role="main" aria-label="Backend Health Monitoring Page">
+        <main role="main" aria-label="Backend Health Monitoring Page" data-testid="health-main">
           <div 
             className="status-section"
             role="status"
             aria-live="polite"
             aria-label="Backend connection status"
+            data-testid="health-status"
           >
             <div className="status-indicator">
               <span 
                 className={`status-icon ${getStatusColor()}`}
                 role="img"
                 aria-label={`Status: ${getStatusText()}`}
+                data-testid="status-icon"
               >
                 {getStatusIcon()}
               </span>
               <span 
                 className={`status-text ${getStatusColor()}`}
                 role="text"
+                data-testid="status-text"
               >
                 {getStatusText()}
               </span>
@@ -111,6 +114,7 @@ function HealthPage() {
                 className="error-message"
                 role="alert"
                 aria-label="Error details"
+                data-testid="health-error"
               >
                 <span className="error-icon">⚠️</span>
                 <span className="error-text">{errorMessage}</span>
@@ -122,6 +126,7 @@ function HealthPage() {
                 className="last-checked"
                 role="text"
                 aria-label="Last status check time"
+                data-testid="last-checked"
               >
                 Last checked: {lastChecked.toLocaleTimeString()}
               </div>
@@ -157,6 +162,7 @@ function HealthPage() {
             aria-label="Go back to home page"
             onClick={handleBackClick}
             className="back-button"
+            data-testid="health-back"
           >
             ← Back to Home
           </button>

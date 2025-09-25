@@ -203,16 +203,17 @@ function ListPage() {
   return (
     <div className="page-container">
       <div className="page-content">
-        <h1 className="page-title">Training Sessions</h1>
+        <h1 className="page-title" data-testid="list-title">Training Sessions</h1>
         <p className="page-description">Your current training progress</p>
         
-        <nav role="navigation" aria-label="Page navigation">
+        <nav role="navigation" aria-label="Page navigation" data-testid="list-page-nav">
           <div className="nav-buttons">
             <button 
               className="hello-button secondary"
               onClick={handleBackClick}
               aria-label="Go back to home page"
               role="button"
+              data-testid="back-button"
             >
               ← Back
             </button>
@@ -221,15 +222,16 @@ function ListPage() {
               onClick={handleAddClick}
               aria-label="Add new training session"
               role="button"
+              data-testid="add-session-button"
             >
               + Add Session
             </button>
           </div>
         </nav>
 
-        <main role="main" aria-label="Training sessions list">
+        <main role="main" aria-label="Training sessions list" data-testid="list-main">
           {/* Filter Section */}
-          <section role="search" aria-labelledby="filter-heading" className="filter-section">
+          <section role="search" aria-labelledby="filter-heading" className="filter-section" data-testid="filter-section">
             <h2 id="filter-heading" className="visually-hidden">Filter Training Sessions</h2>
             <div className="filter-controls" role="group" aria-labelledby="filter-heading">
               <div className="filter-group">
@@ -244,6 +246,7 @@ function ListPage() {
                   placeholder="Enter title to filter..."
                   className="filter-input"
                   aria-describedby="title-filter-help"
+                  data-testid="filter-title"
                 />
                 <span id="title-filter-help" className="visually-hidden">
                   Type to filter sessions by title
@@ -262,6 +265,7 @@ function ListPage() {
                   placeholder="Enter duration to filter..."
                   className="filter-input"
                   aria-describedby="duration-filter-help"
+                  data-testid="filter-duration"
                 />
                 <span id="duration-filter-help" className="visually-hidden">
                   Type to filter sessions by duration in hours
@@ -278,6 +282,7 @@ function ListPage() {
                   onChange={(e) => setStatusFilter(e.target.value)}
                   className="filter-select"
                   aria-describedby="status-filter-help"
+                  data-testid="filter-status"
                 >
                   <option value="">All Statuses</option>
                   <option value="Pending">Pending</option>
@@ -296,6 +301,7 @@ function ListPage() {
                 className="hello-button secondary clear-filters-button"
                 aria-label="Clear all filters"
                 role="button"
+                data-testid="clear-filters"
               >
                 Clear Filters
               </button>
@@ -329,24 +335,28 @@ function ListPage() {
                 role="list" 
                 aria-label="Training sessions"
                 className="sessions-list"
+                data-testid="sessions-list"
               >
                 {filteredSessions.map((session) => (
                   <li 
                     key={session.id} 
                     role="listitem"
                     className="session-item"
+                    data-testid={`session-item-${session.id}`}
                   >
                     <article role="article" aria-labelledby={`session-${session.id}-title`}>
                       <header>
                         <h3 
                           id={`session-${session.id}-title`}
                           className="session-title"
+                          data-testid={`session-title-${session.id}`}
                         >
                           <button
                             className="title-edit-button"
                             onClick={() => navigate(`/edit/${session.id}`)}
                             aria-label={`Edit training session: ${session.title}`}
                             role="button"
+                            data-testid={`edit-session-${session.id}`}
                           >
                             {session.title}
                           </button>
@@ -356,6 +366,7 @@ function ListPage() {
                             className={`status-badge status-${session.status.toLowerCase().replace(' ', '-')}`}
                             role="status"
                             aria-label={`Status: ${session.status}`}
+                            data-testid={`status-badge-${session.id}`}
                           >
                             {session.status}
                           </span>
@@ -364,6 +375,7 @@ function ListPage() {
                             onClick={() => handleDeleteClick(session)}
                             aria-label={`Delete training session: ${session.title}`}
                             role="button"
+                            data-testid={`delete-session-${session.id}`}
                           >
                             🗑️
                           </button>
