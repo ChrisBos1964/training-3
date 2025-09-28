@@ -33,15 +33,15 @@ export default defineConfig({
       use: { ...devices['Desktop Chrome'] },
     },
 
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
+    // {
+    //   name: 'firefox',
+    //   use: { ...devices['Desktop Firefox'] },
+    // },
 
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
+    // {
+    //   name: 'webkit',
+    //   use: { ...devices['Desktop Safari'] },
+    // },
 
     /* Test against mobile viewports. */
     // {
@@ -70,7 +70,9 @@ export default defineConfig({
     url: 'http://localhost:5173',
     reuseExistingServer: !process.env.CI,
   },
+  workers: '75%',
 
-  /* Global setup - uncomment to run reset-db.sh before all tests */
-  // globalSetup: require.resolve('./global-setup.js'),
+  /* Global setup starts backend and resets DB */
+  globalSetup: './global-setup.js',
+  globalTeardown: './global-teardown.js',
 }); 

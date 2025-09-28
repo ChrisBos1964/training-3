@@ -10,6 +10,7 @@ function ListPage() {
   const [error, setError] = useState(null)
   const [deleteConfirm, setDeleteConfirm] = useState(null)
   const [finalDeleteConfirm, setFinalDeleteConfirm] = useState(null)
+  const [isLoggedIn, setIsLoggedIn] = useState(!!localStorage.getItem('token'))
   // Filter states
   const [titleFilter, setTitleFilter] = useState('')
   const [durationFilter, setDurationFilter] = useState('')
@@ -22,6 +23,14 @@ function ListPage() {
 
   useEffect(() => {
     loadSessions()
+    // Keep logged-in state in sync
+    const onStorage = (e) => {
+      if (e.key === 'token') {
+        setIsLoggedIn(!!e.newValue)
+      }
+    }
+    window.addEventListener('storage', onStorage)
+    return () => window.removeEventListener('storage', onStorage)
   }, [])
 
   // Focus management for modal
@@ -125,10 +134,6 @@ function ListPage() {
     setStatusFilter('')
   }
 
-  const handleBackClick = () => {
-    navigate('/')
-  }
-
   const handleAddClick = () => {
     navigate('/add')
   }
@@ -208,15 +213,6 @@ function ListPage() {
         
         <nav role="navigation" aria-label="Page navigation" data-testid="list-page-nav">
           <div className="nav-buttons">
-            <button 
-              className="hello-button secondary"
-              onClick={handleBackClick}
-              aria-label="Go back to home page"
-              role="button"
-              data-testid="back-button"
-            >
-              ← Back
-            </button>
             <button 
               className="hello-button add-button"
               onClick={handleAddClick}
@@ -351,15 +347,19 @@ function ListPage() {
                           className="session-title"
                           data-testid={`session-title-${session.id}`}
                         >
-                          <button
-                            className="title-edit-button"
-                            onClick={() => navigate(`/edit/${session.id}`)}
-                            aria-label={`Edit training session: ${session.title}`}
-                            role="button"
-                            data-testid={`edit-session-${session.id}`}
-                          >
-                            {session.title}
-                          </button>
+                          {isLoggedIn ? (
+                            <button
+                              className="title-edit-button"
+                              onClick={() => navigate(`/edit/${session.id}`)}
+                              aria-label={`Edit training session: ${session.title}`}
+                              role="button"
+                              data-testid={`edit-session-${session.id}`}
+                            >
+                              {session.title}
+                            </button>
+                          ) : (
+                            <span>{session.title}</span>
+                          )}
                         </h3>
                         <div className="session-actions">
                           <span 
@@ -370,15 +370,17 @@ function ListPage() {
                           >
                             {session.status}
                           </span>
-                          <button
-                            className="delete-button"
-                            onClick={() => handleDeleteClick(session)}
-                            aria-label={`Delete training session: ${session.title}`}
-                            role="button"
-                            data-testid={`delete-session-${session.id}`}
-                          >
-                            🗑️
-                          </button>
+                          {isLoggedIn && (
+                            <button
+                              className="delete-button"
+                              onClick={() => handleDeleteClick(session)}
+                              aria-label={`Delete training session: ${session.title}`}
+                              role="button"
+                              data-testid={`delete-session-${session.id}`}
+                            >
+                              🗑️
+                            </button>
+                          )}
                         </div>
                       </header>
                       <p className="session-description">

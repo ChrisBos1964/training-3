@@ -11,6 +11,7 @@ function EditSessionPage() {
   const [error, setError] = useState(null)
   const [deleteConfirm, setDeleteConfirm] = useState(false)
   const [finalDeleteConfirm, setFinalDeleteConfirm] = useState(false)
+  const [isLoggedIn, setIsLoggedIn] = useState(false)
   const [formData, setFormData] = useState({
     title: '',
     description: '',
@@ -19,8 +20,18 @@ function EditSessionPage() {
   })
 
   useEffect(() => {
+    // Check if user is logged in
+    const token = localStorage.getItem('token')
+    setIsLoggedIn(!!token)
+    
+    if (!token) {
+      // Redirect to login if not authenticated
+      navigate('/login')
+      return
+    }
+    
     loadSession()
-  }, [id])
+  }, [id, navigate])
 
   const loadSession = async () => {
     try {

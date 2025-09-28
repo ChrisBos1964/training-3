@@ -1,6 +1,8 @@
 # Champions Training App
 
-A comprehensive training session management application with a React frontend and Node.js backend, featuring full CRUD operations, accessibility compliance, and comprehensive testing.
+A comprehensive training session management application with a React frontend
+and Node.js backend, featuring full CRUD operations, accessibility compliance,
+and comprehensive testing.
 
 ## 🚀 Features
 
@@ -29,12 +31,14 @@ training-3/
 ## 🛠️ Technology Stack
 
 ### Frontend
+
 - **React 19** - Modern React with hooks
 - **React Router** - Client-side routing
 - **CSS3** - Custom styling with gradients and animations
 - **Playwright** - End-to-end testing
 
 ### Backend
+
 - **Node.js** - JavaScript runtime
 - **Express** - Web framework
 - **SQLite** - Lightweight database
@@ -49,12 +53,14 @@ training-3/
 ## 🚀 Quick Start
 
 ### 1. Clone and Setup
+
 ```bash
-git clone <repository-url>
+git clone git@github.com:joelgrimberg/training-3.git
 cd training-3
 ```
 
 ### 2. Backend Setup
+
 ```bash
 cd backend
 npm install
@@ -65,6 +71,7 @@ npm run dev
 The backend will start on `http://localhost:3001`
 
 ### 3. Frontend Setup
+
 ```bash
 cd ../frontend
 npm install
@@ -74,6 +81,7 @@ npm run dev
 The frontend will start on `http://localhost:5173`
 
 ### 4. Access the Application
+
 - Frontend: http://localhost:5173
 - Backend API: http://localhost:3001
 - Health Check: http://localhost:3001/health
@@ -81,45 +89,52 @@ The frontend will start on `http://localhost:5173`
 ## 🧪 Testing
 
 ### Frontend Tests
+
 ```bash
 cd frontend
 npm test
 ```
 
 ### Backend Tests
+
 ```bash
 cd backend
 npm test
 ```
 
 ### All Tests (from project root)
+
 ```bash
 # Frontend tests
 cd frontend && npm test
 
-# Backend tests  
+# Backend tests
 cd ../backend && npm test
 ```
 
 ## 📱 Application Features
 
 ### Home Page
+
 - Welcome message
 - Navigation to training sessions list
 
 ### Training Sessions List
+
 - View all training sessions
 - Add new sessions
 - Delete existing sessions with confirmation
 - Real-time data from backend API
 
 ### Add Session Form
+
 - Create new training sessions
 - Form validation
 - Real-time feedback
 - Accessibility compliant
 
 ### Delete Confirmation
+
 - Modal dialog with "Yes/No" options
 - Prevents accidental deletions
 - Accessible with proper ARIA attributes
@@ -151,30 +166,33 @@ CREATE TABLE training_sessions (
 
 ## 🔌 API Endpoints
 
-| Method | Endpoint | Description |
-|--------|----------|-------------|
-| GET | `/health` | Health check |
-| GET | `/api/sessions` | Get all sessions |
-| GET | `/api/sessions/:id` | Get session by ID |
-| POST | `/api/sessions` | Create new session |
-| PUT | `/api/sessions/:id` | Update session |
-| DELETE | `/api/sessions/:id` | Delete session |
+| Method | Endpoint            | Description        |
+| ------ | ------------------- | ------------------ |
+| GET    | `/health`           | Health check       |
+| GET    | `/api/sessions`     | Get all sessions   |
+| GET    | `/api/sessions/:id` | Get session by ID  |
+| POST   | `/api/sessions`     | Create new session |
+| PUT    | `/api/sessions/:id` | Update session     |
+| DELETE | `/api/sessions/:id` | Delete session     |
 
 ## 🎨 UI Components
 
 ### Buttons
+
 - Primary buttons with gradient backgrounds
 - Secondary buttons for cancel actions
 - Delete buttons with confirmation
 - Hover effects and transitions
 
 ### Forms
+
 - Input fields with proper labels
 - Help text and validation
 - Accessible form structure
 - Loading states and error handling
 
 ### Modals
+
 - Confirmation dialogs
 - Backdrop blur effects
 - Proper focus management
@@ -183,6 +201,7 @@ CREATE TABLE training_sessions (
 ## 🧪 Test Coverage
 
 ### Frontend Tests
+
 - Component rendering and interactions
 - Navigation and routing
 - Form validation and submission
@@ -190,6 +209,7 @@ CREATE TABLE training_sessions (
 - Responsive design
 
 ### Backend Tests
+
 - API endpoint functionality
 - CRUD operations
 - Input validation
@@ -197,6 +217,7 @@ CREATE TABLE training_sessions (
 - Database operations
 
 ### Integration Tests
+
 - Frontend-backend communication
 - End-to-end user workflows
 - Data persistence
@@ -213,6 +234,7 @@ CREATE TABLE training_sessions (
 ## 📚 API Examples
 
 ### Create a Session
+
 ```bash
 curl -X POST http://localhost:3001/api/sessions \
   -H "Content-Type: application/json" \
@@ -225,11 +247,13 @@ curl -X POST http://localhost:3001/api/sessions \
 ```
 
 ### Get All Sessions
+
 ```bash
 curl http://localhost:3001/api/sessions
 ```
 
 ### Delete a Session
+
 ```bash
 curl -X DELETE http://localhost:3001/api/sessions/1
 ```
@@ -239,11 +263,13 @@ curl -X DELETE http://localhost:3001/api/sessions/1
 ### Common Issues
 
 1. **Backend won't start**
+
    - Check if port 3001 is available
    - Ensure all dependencies are installed
    - Run `npm run init-db` to initialize database
 
 2. **Frontend can't connect to backend**
+
    - Verify backend is running on port 3001
    - Check CORS configuration
    - Ensure API endpoints are accessible
@@ -256,6 +282,7 @@ curl -X DELETE http://localhost:3001/api/sessions/1
 ### Debug Mode
 
 Run tests in debug mode:
+
 ```bash
 npm run test:debug
 ```
@@ -277,6 +304,7 @@ This project is licensed under the MIT License.
 ## 🆘 Support
 
 For questions or issues:
+
 1. Check the troubleshooting section
 2. Review the test output for error details
 3. Check browser console and backend logs
@@ -284,4 +312,6 @@ For questions or issues:
 
 ---
 
-**Remember**: This application follows strict accessibility guidelines and testing requirements. Every change must be tested and maintain accessibility compliance.
+**Remember**: This application follows strict accessibility guidelines and
+testing requirements. Every change must be tested and maintain accessibility
+compliance.

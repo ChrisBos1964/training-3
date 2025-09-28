@@ -1,3 +1,66 @@
+/* Shadow DOM CSS Parts Styling */
+hello-shadow::part(button) {
+  /* Custom styling for shadow DOM button part */
+  transition: all 0.3s ease;
+}
+
+hello-shadow::part(button):hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
+}
+
+hello-shadow::part(status) {
+  /* Custom styling for shadow DOM status part */
+  font-weight: 500;
+}
+
+hello-shadow::part(input) {
+  /* Custom styling for shadow DOM input part */
+  border: 2px solid #667eea;
+  transition: border-color 0.3s ease;
+}
+
+hello-shadow::part(input):focus {
+  border-color: #764ba2;
+  outline: none;
+}
+
+hello-shadow::part(submit-btn) {
+  /* Custom styling for shadow DOM submit button part */
+  background: linear-gradient(45deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+hello-shadow::part(submit-btn):hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+hello-shadow::part(result) {
+  /* Custom styling for shadow DOM result part */
+  background: linear-gradient(45deg, #f8f9fa, #e9ecef);
+  border-left: 4px solid #667eea;
+  padding: 12px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9rem;
+}
+
+hello-shadow::part(container) {
+  /* Custom styling for shadow DOM container part */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+hello-shadow::part(container):hover {
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+}
+
 /* CSS Variables for theming */
 :root {
   /* Light theme colors */
@@ -526,6 +589,7 @@
   margin: 0;
   padding: 0;
   gap: 1rem;
+  align-items: center;
 }
 
 .nav-menu li {
@@ -558,6 +622,17 @@
   font-weight: 600;
 }
 
+.nav-button.logged-in-status {
+  width: 120px !important;
+  min-width: 120px !important;
+  text-align: center;
+  box-sizing: border-box;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
 .nav-button:focus {
   outline: 2px solid #667eea;
   outline-offset: 2px;
@@ -574,6 +649,143 @@
 
 .theme-dark .nav-button.active {
   color: #ffffff; /* White text for active state in dark mode */
+}
+
+.theme-dark .nav-button.logged-in-status {
+  width: 120px !important;
+  min-width: 120px !important;
+  text-align: center;
+  box-sizing: border-box;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+/* Login form container with sidebar */
+.login-form-container {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.login-form {
+  flex: 1;
+  max-width: 400px;
+}
+
+.login-sidebar {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  min-width: 200px;
+  gap: 1rem;
+}
+
+.vertical-separator {
+  width: 1px;
+  height: 200px;
+  background: linear-gradient(to bottom, transparent, #ddd, transparent);
+  flex-shrink: 0;
+}
+
+.theme-dark .vertical-separator {
+  background: linear-gradient(to bottom, transparent, #555, transparent);
+}
+
+.sidebar-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  flex: 1;
+}
+
+.forgot-password-section {
+  text-align: center;
+}
+
+.forgot-password-link {
+  background: none;
+  border: none;
+  color: #666;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.forgot-password-link:hover:not(:disabled) {
+  color: #333;
+}
+
+.forgot-password-link:disabled {
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.theme-dark .forgot-password-link {
+  color: #888;
+}
+
+.theme-dark .forgot-password-link:hover:not(:disabled) {
+  color: #fff;
+}
+
+.theme-dark .forgot-password-link:disabled {
+  color: #444;
+}
+
+.create-account-section {
+  text-align: center;
+}
+
+.create-account-button {
+  width: 100%;
+  min-width: 150px;
+}
+
+.google-sso-button {
+  width: 100%;
+  min-width: 150px;
+  background: linear-gradient(45deg, #4285f4, #34a853);
+  box-shadow: 0 4px 15px rgba(66, 133, 244, 0.4);
+}
+
+.google-sso-button:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(66, 133, 244, 0.6);
+}
+
+.github-sso-button {
+  width: 100%;
+  min-width: 150px;
+  background: linear-gradient(45deg, #24292e, #586069);
+  box-shadow: 0 4px 15px rgba(36, 41, 46, 0.4);
+}
+
+.github-sso-button:hover:not(:disabled) {
+  box-shadow: 0 6px 20px rgba(36, 41, 46, 0.6);
+}
+
+.sso-indicator {
+  margin-left: 8px;
+  font-size: 0.8em;
+  opacity: 0.8;
+}
+
+.login-container {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.user-avatar {
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  object-fit: cover;
+  width: 60px !important;
+  height: 60px !important;
 }
 
 /* Dark mode header background styling */

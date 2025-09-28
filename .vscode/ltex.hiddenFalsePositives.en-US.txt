@@ -1,0 +1,3 @@
+{"rule":"LC_AFTER_PERIOD","sentence":"^\\Qshadow dom\nsso\npage.evaluate\nvibe-code a frontend\nreflection questions:\ndo I understand every step\nhow could write better prompts\nwrite first tests\nhow can I use this frontend to learn Playwright\\E$"}
+{"rule":"LC_AFTER_PERIOD","sentence":"^\\Qshadow dom\nsso\npage.evaluate\nplaywright advanced selectors\ncustom hooks\nstate management\napi testing\nperformance testing\nvibe-code a frontend\\E$"}
+{"rule":"LC_AFTER_PERIOD","sentence":"^\\Qshadow dom\nsso\npage.evaluate\nplaywright advanced selectors\ncustom hooks\nstate management\nAPI testing\nperformance testing\nvibe-code a frontend\\E$"}

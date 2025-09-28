@@ -30,6 +30,22 @@ function BestPracticesPage() {
             <h2 id="practices-heading" className="visually-hidden">Best Practices Content</h2>
             
             <div className="best-practices-list">
+              <article className="practice-item" data-testid="bp-await-expect">
+                <h3 className="practice-title">0. Always await assertions (Playwright auto-waits)</h3>
+                <p className="practice-description">
+                  In Playwright, expectations return promises and auto-wait. You must <strong>await</strong> them; otherwise the next steps may run too early causing flaky tests.
+                </p>
+                <div className="code-example">
+                  <pre><code>{`// Bad: next line runs immediately; flake/unhandled rejection risk
+expect(page.getByRole('button', { name: 'Save' })).toBeVisible();
+await page.getByRole('button', { name: 'Save' }).click();
+
+// Good: click happens only after visibility is confirmed
+await expect(page.getByRole('button', { name: 'Save' })).toBeVisible();
+await page.getByRole('button', { name: 'Save' }).click();`}</code></pre>
+                </div>
+              </article>
+
               <article className="practice-item">
                 <h3 className="practice-title">1. Use TestingLibrary Pattern: Queries Accessible to Everyone</h3>
                 <p className="practice-description">
