@@ -105,12 +105,12 @@ test.describe('Accessibility and Navigation Tests', () => {
     // Check submit button
     const submitButton = page.getByRole('button', { name: 'Create training session' });
     await expect(submitButton).toBeVisible();
-    await expect(submitButton).toHaveAttribute('role', 'button');
+    // native button already has button role, no need to assert explicit attribute
     
     // Check back button
-    const backButton = page.getByRole('button', { name: 'Cancel' });
+    const backButton = page.getByRole('button', { name: 'Cancel and return to list' });
     await expect(backButton).toBeVisible();
-    await expect(backButton).toHaveAttribute('role', 'button');
+    // native button already has button role, no need to assert explicit attribute
   });
 
   test('should have proper header accessibility on non-intro pages', async ({ page }) => {

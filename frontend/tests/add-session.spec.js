@@ -86,7 +86,7 @@ test.describe('Add Session Page Tests', () => {
     await expect(submitButton).toBeDisabled();
     
     // Check cancel button
-    const cancelButton = page.getByRole('button', { name: 'Cancel' });
+    const cancelButton = page.getByRole('button', { name: 'Cancel and return to list' });
     await expect(cancelButton).toBeVisible();
     await expect(cancelButton).toBeEnabled();
   });
@@ -120,10 +120,11 @@ test.describe('Add Session Page Tests', () => {
     await page.getByLabel('Status *').selectOption('Pending');
     
     // Wait for form to be valid (submit button should be enabled)
-    await page.waitForSelector('[role="button"][aria-label="Create training session"]:not([disabled])');
+    const submitButton = page.getByRole('button', { name: 'Create training session' });
+    await expect(submitButton).toBeEnabled();
     
     // Submit form
-    await page.getByRole('button', { name: 'Create training session' }).click();
+    await submitButton.click();
     
     // Should navigate back to list (since backend is not implemented)
     await expect(page).toHaveURL('/list');

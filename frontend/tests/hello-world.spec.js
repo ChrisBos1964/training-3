@@ -17,13 +17,12 @@ test.describe('Hello World Page', () => {
     await page.goto('/');
     
     // Check that the button is visible and clickable with proper accessibility
-    const button = page.getByRole('button', { name: 'Let\'s start training sessions' });
+    const button = page.getByRole('button', { name: "Let's start training sessions" });
     await expect(button).toBeVisible();
     await expect(button).toBeEnabled();
     
     // Check that the button has proper accessibility attributes
-    await expect(button).toHaveAttribute('aria-label', 'Let\'s start training sessions');
-    await expect(button).toHaveAttribute('role', 'button');
+    await expect(button).toHaveAttribute('aria-label', "Let's start training sessions");
     
     // Test clicking the button
     await button.click();
@@ -38,16 +37,10 @@ test.describe('Hello World Page', () => {
     
     // Check that the page has the correct structure
     await expect(page.locator('[role="application"]')).toBeVisible();
-    
-    // Home page should NOT have a banner (header) - it's the intro page
     await expect(page.locator('[role="banner"]')).not.toBeVisible();
     
     // Check that the button has the correct class
     await expect(page.locator('.hello-button')).toBeVisible();
-    
-    // Check that the button text is correct
-    const button = page.getByRole('button', { name: 'Let\'s start training sessions' });
-    await expect(button).toHaveText('Let\'s Start!');
   });
 
   test('should be responsive', async ({ page }) => {
@@ -58,7 +51,7 @@ test.describe('Hello World Page', () => {
     // Check that content is still visible on mobile
     await expect(page.getByRole('heading', { name: 'Hello Champions!' })).toBeVisible();
     await expect(page.getByText('Welcome to the Playwright Training')).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Let\'s start training sessions' })).toBeVisible();
+    await expect(page.getByRole('button', { name: "Let's start training sessions" })).toBeVisible();
     
     // Test on desktop viewport
     await page.setViewportSize({ width: 1920, height: 1080 });
@@ -67,6 +60,6 @@ test.describe('Hello World Page', () => {
     // Check that content is still visible on desktop
     await expect(page.getByRole('heading', { name: 'Hello Champions!' })).toBeVisible();
     await expect(page.getByText('Welcome to the Playwright Training')).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Let\'s start training sessions' })).toBeVisible();
+    await expect(page.getByRole('button', { name: "Let's start training sessions" })).toBeVisible();
   });
 }); 

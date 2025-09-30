@@ -7,7 +7,8 @@ test.describe('Authentication API', () => {
     const response = await request.post(`${baseURL}/api/login`, {
       data: {
         username: 'joel',
-        password: 'joel'
+        // Password seeded by init-db.js
+        password: 'grimberg'
       }
     });
 
