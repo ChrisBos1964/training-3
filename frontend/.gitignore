@@ -13,10 +13,8 @@ dist-ssr
 *.local
 
 # Test files
-tests/
 test-results/
 playwright-report/
-playwright.config.js
 
 # Editor directories and files
 .vscode/*
